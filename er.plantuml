@@ -30,6 +30,8 @@ entity "users" as users {
   password
   password_confirmation
   family_name_kanji
+  first_name_kanji
+  family_name_katakana
   first_name_katakana
   birth_year
   birth_month
