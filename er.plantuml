@@ -1,0 +1,47 @@
+@startuml furima
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "items" as items {
+  id
+  --
+  user_id<<FK>>
+  image
+  name
+  text
+  category
+  condition
+  shipping_fee
+  area
+  days
+  value
+  created_at
+  updated_at
+}
+
+entity "users" as users {
+  id
+  --
+  nickname
+  email
+  password
+  password_confirmation
+  family_name_kanji
+  first_name_katakana
+  birth_year
+  birth_month
+  birth_day
+  created_at
+  updated_at
+  deleted_at
+}
+
+
+
+users ||--o{ items
+
+
+@enduml
