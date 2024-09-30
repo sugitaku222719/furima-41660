@@ -24,11 +24,24 @@ Things you may want to cover:
 * ...
 
 
-#必要なデータベース
+## items
+
+|Column|Type|Options|
+|------|----|-------|
+（ここに追記していく）
+
+
+### Association
+（ここに追記していく）
+
+
+
+
+# 必要なデータベース
 items
 users
 
-#itemsに必要な要素
+# itemsに必要な要素
 出品者のuser_id
 商品画像
 商品名
@@ -40,7 +53,7 @@ users
 配送までの日数
 値段
 
-#usersに必要な要素
+# usersに必要な要素
 ニックネーム
 メールアドレス
 パスワード
