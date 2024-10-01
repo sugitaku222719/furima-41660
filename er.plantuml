@@ -1,0 +1,66 @@
+@startuml furima
+' hide the spot
+hide circle
+
+' avoid problems with angled crows feet
+skinparam linetype ortho
+
+entity "items" as items {
+  id
+  --
+  user : references : 出品者のuser_id <<FK>>
+  name : string : 商品名
+  content : text : 商品説明
+  category_id : integer : 商品のカテゴリー
+  condition_id : integer : 商品の状態
+  shipping_fee_id : integer : 送料の負担をどちらが支払うか
+  area_id : integer : 出品元の地域
+  piriod_id : integer : 出品までの日数
+  price : integer : 商品の値段
+  created_at : datetime : 作成日時
+  updated_at : datetime : 更新日時
+}
+
+entity "users" as users {
+  id
+  --
+  nickname : string : ニックネーム
+  email : string : メールアドレス
+  encrypted_password : string : パスワード
+  family_name_kanji : string : 苗字(漢字)
+  first_name_kanji : string : 名前(漢字)
+  family_name_katakana : string : 苗字(カタカナ)
+  first_name_katakana : string : 名前(カタカナ)
+  birthday : date : 生年月日
+  created_at : datetime : 作成日時
+  updated_at : datetime : 更新日時
+}
+
+entity "purchasers" as purchasers {
+  id
+  --
+  history : references : 購入履歴のid <<FK>>
+  postal_code : string : 郵便番号
+  area_id : integer : 都道府県
+  city : string : 市区町村
+  address_line1 : string : 番地
+  address_line2 : string : 建物名
+  phone_number : string : 電話番号 
+  created_at : datetime : 作成日時
+  updated_at : datetime : 更新日時
+}
+
+entity "histories" as histories {
+  id
+  --
+  user : references : 購入者のuser_id <<FK>>
+  item : references : 購入された商品のitem_id <<FK>>
+}
+
+
+users ||--o{ items
+users ||--o{ histories
+items ||--o| histories
+histories ||--|| purchasers
+
+@enduml
