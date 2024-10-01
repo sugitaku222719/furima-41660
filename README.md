@@ -28,42 +28,70 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-（ここに追記していく）
-
+id|integer|null: false, primary key
+user_id|integer|null: false, foreign_key: true
+image|text|null: false
+name|string|null: false
+text|text|null: false
+category|string|null: false
+condition|string|null: false
+shipping_fee|boolean|null: false
+area|string|null: false
+days|string|null: false
+price|integer|null: false
+status|boolean|null: false
+created_at|datetime|null: false
+updated_at|datetime|null: false
 
 ### Association
-（ここに追記していく）
+belongs_to user
+has_one purchaser
 
 
 
+## users
 
-# 必要なデータベース
-items
-users
+|Column|Type|Options|
+|------|----|-------|
+id|integer|null: false, primary key
+nickname|string|null: false
+email|string|null: false
+password|string|null: false
+password_confirmation|string|null: false
+family_name_kanji|string|null: false
+first_name_kanji|string|null: false
+family_name_katakana|string|null: false
+first_name_katakana|string|null: false
+birth_year|integer|null: false
+birth_month|integer|null: false
+birth_day|integer|null: false
+created_at|datetime|null: false
+updated_at|datetime|null: false
 
-# itemsに必要な要素
-出品者のuser_id
-商品画像
-商品名
-商品の詳細
-カテゴリー
-商品の状態
-配送料
-配送元の地域
-配送までの日数
-値段
+### Association
+has_many items
+has_many purchasers
 
-# usersに必要な要素
-ニックネーム
-メールアドレス
-パスワード
-確認用パスワード
-本名(苗字_漢字)
-本名(名前_漢字)
-本名(苗字_カタカナ)
-本名(名前_カタカナ)
-誕生日(年)
-誕生日(月)
-誕生日(日)
+
+
+## purchasers
+
+|Column|Type|Options|
+|------|----|-------|
+id|integer|null: false, primary key
+user_id|integer|null: false, foreign_key: true
+item_id|integer|null: false, foreign_key: true
+postal_code|string|null: false
+prefecture|string|null: false
+city|string|null: false
+address_line1|string|null: false
+address_line2|string|
+phone_number|string|null: false
+created_at|datetime|null: false
+updated_at|datetime|null: false
+
+### Association
+belongs_to item
+belongs_to user
 
 

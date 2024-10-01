@@ -6,44 +6,58 @@ hide circle
 skinparam linetype ortho
 
 entity "items" as items {
-  id
+  id : integer
   --
-  user_id<<FK>>
-  image
-  name
-  text
-  category
-  condition
-  shipping_fee
-  area
-  days
-  value
-  created_at
-  updated_at
+  user_id : integer : 出品者のuser_id <<FK>>
+  image : text : 商品画像
+  name : string : 商品名
+  text : text : 商品説明
+  category : string : 商品のカテゴリー
+  condition : string : 商品の状態
+  shipping_fee : boolean : 送料の負担をどちらが支払うか
+  area : string : 出品元の地域
+  days : string : 出品までの日数
+  price : integer : 商品の値段
+  status : boolean : 購入済みか否か
+  created_at : datetime : 作成日時
+  updated_at : datetime : 更新日時
 }
 
 entity "users" as users {
-  id
+  id : integer
   --
-  nickname
-  email
-  password
-  password_confirmation
-  family_name_kanji
-  first_name_kanji
-  family_name_katakana
-  first_name_katakana
-  birth_year
-  birth_month
-  birth_day
-  created_at
-  updated_at
-  deleted_at
+  nickname : string : ニックネーム
+  email : string : メールアドレス
+  password : string : パスワード
+  password_confirmation : string : パスワード(確認用)
+  family_name_kanji : string : 苗字(漢字)
+  first_name_kanji : string : 名前(漢字)
+  family_name_katakana : string : 苗字(カタカナ)
+  first_name_katakana : string : 名前(カタカナ)
+  birth_year : integer : 生年月日(年)
+  birth_month : integer : 生年月日(月)
+  birth_day : integer : 生年月日(日)
+  created_at : datetime : 作成日時
+  updated_at : datetime : 更新日時
 }
 
-
+entity "purchasers" as purchasers {
+  id : integer
+  --
+  user_id : integer : 購入者のuser_id <<FK>>
+  item_id : integer : 出品商品のitem_id <<FK>>
+  postal_code : string : 郵便番号
+  prefecture : string : 都道府県
+  city : string : 市区町村
+  address_line1 : string : 番地
+  address_line2 : string : 建物名
+  phone_number : string : 電話番号 
+  created_at : datetime : 作成日時
+  updated_at : datetime : 更新日時
+}
 
 users ||--o{ items
-
+users ||--o| purchasers
+items |o--|| purchasers
 
 @enduml
