@@ -28,24 +28,21 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-id|integer|null: false, primary key
-user_id|integer|null: false, foreign_key: true
-image|text|null: false
+user|references|null: false, foreign_key: true
 name|string|null: false
 text|text|null: false
-category|string|null: false
-condition|string|null: false
-shipping_fee|boolean|null: false
-area|string|null: false
-days|string|null: false
+category_id|integer|null: false
+condition_id|integer|null: false
+shipping_fee_id|integer|null: false
+area_id|integer|null: false
+days_id|integer|null: false
 price|integer|null: false
 status|boolean|null: false
-created_at|datetime|null: false
-updated_at|datetime|null: false
 
 ### Association
 belongs_to user
 has_one purchaser
+has_one history
 
 
 
@@ -53,24 +50,19 @@ has_one purchaser
 
 |Column|Type|Options|
 |------|----|-------|
-id|integer|null: false, primary key
 nickname|string|null: false
 email|string|null: false
-password|string|null: false
-password_confirmation|string|null: false
+encrypted_password|string|null: false
 family_name_kanji|string|null: false
 first_name_kanji|string|null: false
 family_name_katakana|string|null: false
 first_name_katakana|string|null: false
-birth_year|integer|null: false
-birth_month|integer|null: false
-birth_day|integer|null: false
-created_at|datetime|null: false
-updated_at|datetime|null: false
+birthday|date|null: false
 
 ### Association
 has_many items
 has_many purchasers
+has_many histories
 
 
 
@@ -78,9 +70,8 @@ has_many purchasers
 
 |Column|Type|Options|
 |------|----|-------|
-id|integer|null: false, primary key
-user_id|integer|null: false, foreign_key: true
-item_id|integer|null: false, foreign_key: true
+user|references|null: false, foreign_key: true
+item|references|null: false, foreign_key: true
 postal_code|string|null: false
 prefecture|string|null: false
 city|string|null: false
@@ -95,3 +86,14 @@ belongs_to item
 belongs_to user
 
 
+
+## histories
+
+|Column|Type|Options|
+|------|----|-------|
+user|references|null: false, foreign_key: true
+item|references|null: false, foreign_key: true
+
+### Association
+belongs_to user
+belongs_to item
