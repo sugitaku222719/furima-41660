@@ -10,14 +10,13 @@ entity "items" as items {
   --
   user : references : 出品者のuser_id <<FK>>
   name : string : 商品名
-  text : text : 商品説明
+  content : text : 商品説明
   category_id : integer : 商品のカテゴリー
   condition_id : integer : 商品の状態
   shipping_fee_id : integer : 送料の負担をどちらが支払うか
   area_id : integer : 出品元の地域
-  days_id : integer : 出品までの日数
+  piriod_id : integer : 出品までの日数
   price : integer : 商品の値段
-  status : boolean : 購入済みか否か
   created_at : datetime : 作成日時
   updated_at : datetime : 更新日時
 }
@@ -40,10 +39,9 @@ entity "users" as users {
 entity "purchasers" as purchasers {
   id
   --
-  user : references : 購入者のuser_id <<FK>>
-  item : references : 出品商品のitem_id <<FK>>
+  history : references : 購入履歴のid <<FK>>
   postal_code : string : 郵便番号
-  prefecture : string : 都道府県
+  area_id : integer : 都道府県
   city : string : 市区町村
   address_line1 : string : 番地
   address_line2 : string : 建物名
@@ -58,10 +56,11 @@ entity "histories" as histories {
   user : references : 購入者のuser_id <<FK>>
   item : references : 購入された商品のitem_id <<FK>>
 }
+
+
 users ||--o{ items
 users ||--o{ histories
-users ||--o| purchasers
-items ||--o| purchasers
 items ||--o| histories
+histories ||--|| purchasers
 
 @enduml

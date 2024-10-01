@@ -28,21 +28,19 @@ Things you may want to cover:
 
 |Column|Type|Options|
 |------|----|-------|
-user|references|null: false, foreign_key: true
-name|string|null: false
-text|text|null: false
-category_id|integer|null: false
-condition_id|integer|null: false
-shipping_fee_id|integer|null: false
-area_id|integer|null: false
-days_id|integer|null: false
-price|integer|null: false
-status|boolean|null: false
+|user|references|null: false, foreign_key: true|
+|name|string|null: false|
+|content|text|null: false|
+|category_id|integer|null: false|
+|condition_id|integer|null: false|
+|shipping_fee_id|integer|null: false|
+|area_id|integer|null: false|
+|period_id|integer|null: false|
+|price|integer|null: false|
 
 ### Association
-belongs_to user
-has_one purchaser
-has_one history
+belongs_to :user
+has_one :purchaser
 
 
 
@@ -50,19 +48,18 @@ has_one history
 
 |Column|Type|Options|
 |------|----|-------|
-nickname|string|null: false
-email|string|null: false
-encrypted_password|string|null: false
-family_name_kanji|string|null: false
-first_name_kanji|string|null: false
-family_name_katakana|string|null: false
-first_name_katakana|string|null: false
-birthday|date|null: false
+|nickname|string|null: false|
+|email|string|null: false, unique: true|
+|encrypted_password|string|null: false|
+|family_name_kanji|string|null: false|
+|first_name_kanji|string|null: false|
+|family_name_katakana|string|null: false|
+|first_name_katakana|string|null: false|
+|birthday|date|null: false|
 
 ### Association
-has_many items
-has_many purchasers
-has_many histories
+has_many :items
+has_many :histories
 
 
 
@@ -70,20 +67,16 @@ has_many histories
 
 |Column|Type|Options|
 |------|----|-------|
-user|references|null: false, foreign_key: true
-item|references|null: false, foreign_key: true
-postal_code|string|null: false
-prefecture|string|null: false
-city|string|null: false
-address_line1|string|null: false
-address_line2|string|
-phone_number|string|null: false
-created_at|datetime|null: false
-updated_at|datetime|null: false
+|history|references|null: false, foreign_key: true|
+|postal_code|string|null: false|
+|area_id|integer|null: false|
+|city|string|null: false|
+|address_line1|string|null: false|
+|address_line2|string||
+|phone_number|string|null: false|
 
 ### Association
-belongs_to item
-belongs_to user
+belongs_to :history
 
 
 
@@ -91,9 +84,10 @@ belongs_to user
 
 |Column|Type|Options|
 |------|----|-------|
-user|references|null: false, foreign_key: true
-item|references|null: false, foreign_key: true
+|user|references|null: false, foreign_key: true|
+|item|references|null: false, foreign_key: true|
 
 ### Association
-belongs_to user
-belongs_to item
+belongs_to :user
+belongs_to :item
+has_one :purchaser
