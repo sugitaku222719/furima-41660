@@ -14,12 +14,15 @@ class User < ApplicationRecord
     validates :first_name_kanji
     validates :family_name_kanji
   end
-  with_options presence: true, format: { with: /\A[ァ-ヶ]+\z/, message: 'カタカナを使用してください' } do
+  with_options presence: true, format: { with: /\A[ァ-ヶー]+\z/, message: 'カタカナを使用してください' } do
     validates :first_name_katakana
     validates :family_name_katakana
   end
+  with_options presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: '英数字混合にしてください' } do
+    validates :password
+  end
 
 
-  has_many :items
-  has_many :histories
+  # has_many :items
+  # has_many :histories
 end
