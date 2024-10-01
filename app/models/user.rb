@@ -18,7 +18,7 @@ class User < ApplicationRecord
     validates :first_name_katakana
     validates :family_name_katakana
   end
-  with_options presence: true, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: '英数字混合にしてください' } do
+  with_options format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i, message: '英数字混合にしてください' } do
     validates :password
   end
 
