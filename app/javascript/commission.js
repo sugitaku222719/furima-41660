@@ -12,4 +12,4 @@ function commission (){
 };
 
 window.addEventListener('turbo:load', commission);
-window.addEventListener("turbo:render", price);
+window.addEventListener("turbo:render", commission);
