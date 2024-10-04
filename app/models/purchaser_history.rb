@@ -14,7 +14,8 @@ class PurchaserHistory
   validates :area_id, numericality: { other_than: 1, message: "can't be blank" }
 
   def save
-    history = History.create(user_id: user_id, item_id: item_id)
-    Purchaser.create(history_id: history.id, postal_code: postal_code, area_id: area_id, city: city, address_line1: address_line1, address_line2: address_line2, phone_number: phone_number)
+    history = History.create(user_id:, item_id:)
+    Purchaser.create(history_id: history.id, postal_code:, area_id:, city:,
+                     address_line1:, address_line2:, phone_number:)
   end
 end
