@@ -1,6 +1,6 @@
 class PurchasersController < ApplicationController
   before_action :authenticate_user!, except: :index
-  before_action :set_item, only: [:index, :create]
+  before_action :set_item, only: [:create, :index]
 
   def index
   end
@@ -26,7 +26,7 @@ class PurchasersController < ApplicationController
   end
 
   def set_item
-    @item = Item.find(params[:id])
+    @item = Item.find(params[:item_id])
   end
 
 end
