@@ -24,6 +24,8 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    return if @item.sold_out? == false
+    redirect_to root_path
   end
 
   def update
