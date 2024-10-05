@@ -3,7 +3,6 @@ class PurchaserHistory
   attr_accessor :history_id, :postal_code, :area_id, :city, :address_line1, :address_line2, :phone_number, :user_id, :item_id
 
   with_options presence: true do
-    validates :history_id
     validates :postal_code
     validates :city
     validates :address_line1

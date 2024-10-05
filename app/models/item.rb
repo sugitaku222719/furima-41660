@@ -7,6 +7,7 @@ class Item < ApplicationRecord
   belongs_to :period
   has_one_attached :image
   belongs_to :user
+  has_many :histories
 
   validates :image, presence: true
   validates :name, presence: true
@@ -18,4 +19,10 @@ class Item < ApplicationRecord
   validates :period_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :price, presence: true,
                     numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 }
+
+
+  def sold_out?
+    History.exists?(item_id: id)
+  end
+  
 end

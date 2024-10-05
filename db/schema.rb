@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_10_04_063342) do
+ActiveRecord::Schema[7.0].define(version: 2024_10_04_063543) do
   create_table "active_storage_attachments", charset: "utf8mb3", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -64,6 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_04_063342) do
   end
 
   create_table "purchasers", charset: "utf8mb3", force: :cascade do |t|
+    t.bigint "history_id", null: false
     t.string "postal_code", null: false
     t.integer "area_id", null: false
     t.string "city", null: false
@@ -72,6 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_04_063342) do
     t.string "phone_number", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["history_id"], name: "index_purchasers_on_history_id"
   end
 
   create_table "users", charset: "utf8mb3", force: :cascade do |t|
@@ -97,4 +99,5 @@ ActiveRecord::Schema[7.0].define(version: 2024_10_04_063342) do
   add_foreign_key "histories", "items"
   add_foreign_key "histories", "users"
   add_foreign_key "items", "users"
+  add_foreign_key "purchasers", "histories"
 end
