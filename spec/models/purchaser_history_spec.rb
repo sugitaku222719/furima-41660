@@ -21,11 +21,6 @@ RSpec.describe PurchaserHistory, type: :model do
         @purchaser_history.valid?
         expect(@purchaser_history.errors.full_messages).to include "Token can't be blank"
       end
-      it 'history_idが空では購入できない' do
-        @purchaser_history.history_id = ''
-        @purchaser_history.valid?
-        expect(@purchaser_history.errors.full_messages).to include "History can't be blank"
-      end
       it 'postal_codeが空では購入できない' do
         @purchaser_history.postal_code = ''
         @purchaser_history.valid?

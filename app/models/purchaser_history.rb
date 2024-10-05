@@ -3,7 +3,6 @@ class PurchaserHistory
   attr_accessor :token, :history_id, :postal_code, :area_id, :city, :address_line1, :address_line2, :phone_number, :user_id, :item_id
 
   with_options presence: true do
-    validates :history_id
     validates :postal_code, format: { with: /\A\d{3}[-]\d{4}\z/, message: '半角数字の3桁-4桁で入力してください' }
     validates :city
     validates :address_line1

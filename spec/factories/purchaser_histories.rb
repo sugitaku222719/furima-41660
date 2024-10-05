@@ -1,7 +1,6 @@
 FactoryBot.define do
   factory :purchaser_history do
     token { "tok_abcdefghijk00000000000000000" }
-    history_id { 1 }
     postal_code { "#{Faker::Number.number(digits: 3)}-#{Faker::Number.number(digits: 4)}" }
     area_id { 2 }
     city { "渋谷区神南" }
