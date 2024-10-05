@@ -7,8 +7,6 @@ FactoryBot.define do
     address_line1 { "1-12-16" }
     address_line2 { "アジアビル9階" }
     phone_number { Faker::Number.number(digits: 10) }
-    user_id { 1 }
-    item_id { 1 }
 
   end
 end

@@ -7,7 +7,7 @@ class Item < ApplicationRecord
   belongs_to :period
   has_one_attached :image
   belongs_to :user
-  has_many :histories
+  has_one :history
 
   validates :image, presence: true
   validates :name, presence: true
@@ -24,5 +24,5 @@ class Item < ApplicationRecord
   def sold_out?
     History.exists?(item_id: id)
   end
-  
+
 end
