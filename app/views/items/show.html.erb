@@ -30,7 +30,7 @@
 
     <% elsif user_signed_in? %>
       <% unless @item.sold_out? %>
-        <%= link_to "購入画面に進む", purchasers_path(item_id: @item.id) ,class:"item-red-btn"%>
+        <%= link_to "購入画面に進む", purchasers_path(item_id: @item.id), data: { turbo: false }, class:"item-red-btn"%>
       <% end %>
     <% end %>
     <div class="item-explain-box">
